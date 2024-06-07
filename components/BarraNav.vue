@@ -20,7 +20,8 @@
                 <Icon name="ic:outline-search"></Icon>
             </div>
             <div class="icono-perfil">
-                <Icon name="ic:outline-account-circle" @click="toggleProfileModal"></Icon>
+                <button v-if="!isAuthenticated" @click="$emit('open-login')" class="login-button">Iniciar sesión</button>
+                <Icon v-else name="ic:outline-account-circle" @click="toggleProfileModal"></Icon>
             </div> 
         </div>
         <PanelPerfil :isOpen="isProfileModalOpen" @close="toggleProfileModal" />
@@ -30,7 +31,11 @@
 
 <script setup>
     import { ref } from 'vue';
-    import PanelPerfil from './PanelPerfil.vue'; // Asegúrate de que la ruta sea correcta
+    import PanelPerfil from './PanelPerfil.vue'; 
+    
+    const props = defineProps({
+        isAuthenticated: Boolean
+    });
 
     const isProfileModalOpen = ref(false);
 
@@ -76,6 +81,7 @@
     .iconos-derecha{
         padding-right: 40px;
         @apply flex;
+        align-items: center;
         .nav-iconos , .icono-perfil{
             font-size: 45px;
             padding-right: 20px;
@@ -85,7 +91,13 @@
                 cursor: pointer;
             }
         }
+        .login-button{
+            font-size: 25px;
+            background-color: transparent;
+            border: none;
+        }
     }
+    
     @media (max-width: 700px) {
         nav{
             max-width: 100%;
