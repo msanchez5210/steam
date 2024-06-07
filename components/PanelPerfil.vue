@@ -1,7 +1,9 @@
 <template>
   <div v-if="isOpen" class="modal-overlay">
     <div class="modal-content">
-      <Icon name="ic:baseline-close" class="close-button" @click="closeModal"></Icon>
+      <div class="caja-boton-cerrar">
+        <Icon name="ic:baseline-close" class="close-button" @click="closeModal"></Icon>
+      </div>
       <div class="caja-apartados">
         <div class="apartados-perfil">
           <Icon class="iconos-perfil" name="ic:outline-shopping-cart"></Icon>
@@ -93,10 +95,12 @@
     width: 100%;
     height: 100vh;
   }
-  .close-button{
+  .caja-boton-cerrar{
     display: flex;
     justify-content: flex-end;
     text-align: right;
+    position: fixed;
+    right: 2%;
   }
   .caja-apartados{
     display: flex;

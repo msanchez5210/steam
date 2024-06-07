@@ -3,7 +3,9 @@
     <div class="modal-content">
       <div class="arriba">
         <h2>{{ article.title }}</h2>
-        <Icon name="ic:baseline-close" class="close-button" @click="closeModal">&times;</Icon>
+        <div class="caja-boton-cerrar">
+          <Icon name="ic:baseline-close" class="close-button" @click="closeModal">&times;</Icon>
+        </div>
       </div>
       <div class="medio">
         <img :src="article.url" :alt="article.title">
@@ -223,6 +225,11 @@
       font-size: 35px;
       font-weight: 600;
     }
+  }
+  .caja-boton-cerrar{
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
   }
   .close-button{
     font-size: 45px;

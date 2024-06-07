@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <BarraNav :isAuthenticated="isAuthenticated" @open-login="openLogin" @open-register="openRegister" />
-    <VentanaInicioSesion :isOpen="isLoginOpen" @close="closeLogin" @login-success="handleLoginSuccess" @open-register="openRegister" />
-    <VentanaRegistro :isOpen="isRegisterOpen" @close="closeRegister" @register-success="handleRegisterSuccess" />
+    <VentanaInicioSesion :isOpen="isLoginOpen" @close="closeLogin" @login-success="handleLoginSuccess" @open-register="openRegister"  />
+    <VentanaRegistro :isOpen="isRegisterOpen" @close="closeRegister" @register-success="handleRegisterSuccess" @open-login="openLogin"/>
     <NuxtPage />
   </div>
 </template>
@@ -29,6 +29,7 @@
     methods: {
       openLogin() {
         this.isLoginOpen = true;
+        this.isRegisterOpen = false;
       },
       closeLogin() {
         this.isLoginOpen = false;
@@ -39,6 +40,7 @@
       },
       openRegister() {
         this.isRegisterOpen = true;
+        this.isLoginOpen = false;
       },
       closeRegister() {
         this.isRegisterOpen = false;
@@ -46,12 +48,15 @@
       handleRegisterSuccess() {
         this.isAuthenticated = true;
         this.closeRegister();
-      }
+        this.closeLogin();
+      },
 
     }
   };
 </script>
 
 <style>
-/* Estilos globales */
+  body{
+    background-color: #DEDEDE;
+  }
 </style>
